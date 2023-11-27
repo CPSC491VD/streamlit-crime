@@ -24,7 +24,7 @@ layer = pdk.Layer(
     data=df,
     elevation_scale=50,
     get_position='[longitude,latitude]',
-    get_radius=400,
+    get_radius=300,
     get_fill_color='color'
 )
 
