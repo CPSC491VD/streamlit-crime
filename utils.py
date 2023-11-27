@@ -17,3 +17,7 @@ def add_location_link(df: pd.DataFrame):
         lambda row: f"https://www.google.com/maps/search/?api=1&query={row['latitude']},{row['longitude']}" if pd.notna(row['latitude']) and pd.notna(row['longitude']) else 'N/A', 
         axis=1
     )
+
+def get_latitude_longitude_mean(df: pd.DataFrame):
+    latitude_mean, longitude_mean = df['latitude'].mean(), df['longitude'].mean()
+    return latitude_mean, longitude_mean
