@@ -17,7 +17,9 @@ add_location_link(df)
 
 st.dataframe(
     df,
-    column_config={"google_link": st.column_config.LinkColumn("Google Maps API")}
+    column_config={
+        "google_link": st.column_config.LinkColumn("Google Maps API")
+    }
 )
 
 st.caption("25 most recent crime records from the data pipeline.")

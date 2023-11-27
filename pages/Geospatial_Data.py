@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 from pydeck.data_utils import assign_random_colors
 import pydeck as pdk
-import streamlit.components.v1 as components
 from utils import init_connection
 
 @st.cache_data
@@ -34,8 +33,8 @@ view_state = pdk.ViewState(
     latitude=df['latitude'].mean(),
     longitude=df['longitude'].mean(),
     zoom=8,
-    pitch=35,
-    bearing=20
+    pitch=45,
+    bearing=10
 )
 
 deck = pdk.Deck(
