@@ -16,5 +16,4 @@ st.markdown(
     - Database is hosted using [ElephantSQL](https://www.elephantsql.com/). 
     """
 )
-
 st.sidebar.info("Please select a data visualization above.")

@@ -14,8 +14,6 @@ def color_lookup(df: pd.DataFrame):
 
 def add_location_link(df: pd.DataFrame):
     df['google_link'] = df.apply(
-        lambda row: f"https://www.google.com/maps/search/?api=1&query={row['latitude']},{row['longitude']}" if pd.notna(row['latitude']) and pd.notna(row['longitude']) else 'Not Available', 
+        lambda row: f"https://www.google.com/maps/search/?api=1&query={row['latitude']},{row['longitude']}" if pd.notna(row['latitude']) and pd.notna(row['longitude']) else 'N/A', 
         axis=1
     )
-
-
