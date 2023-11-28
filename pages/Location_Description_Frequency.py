@@ -7,11 +7,12 @@ import seaborn as sns
 if 'conn' not in st.session_state:
     st.session_state['conn'] = init_connection()
 
+conn = st.session_state['conn']
+
 st.title("Location Frequency")
 st.divider()
 st.header("Top 10 most common locations where crimes are committed in Chicago, sorted by frequency.")
 
-conn = st.session_state['conn']
 
 df = pd.DataFrame(conn.query("SELECT location_description FROM tbl_analytics;", ttl="10m"))
 

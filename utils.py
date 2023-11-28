@@ -25,3 +25,7 @@ def get_latitude_longitude_mean(df: pd.DataFrame):
     """Get the mean of latitude, longitude columns."""
     latitude_mean, longitude_mean = df['latitude'].mean(), df['longitude'].mean()
     return latitude_mean, longitude_mean
+
+@st.cache_data
+def fetch_analytics_tbl(conn):
+    return pd.DataFrame(conn.query("SELECT location_description FROM tbl_analytics;"))
