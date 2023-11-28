@@ -13,7 +13,7 @@ conn = st.session_state['conn']
 
 df = pd.DataFrame(conn.query("SELECT * FROM tbl_analytics", ttl="10m"))
 
-fig, ax = plt.subplots(figsize=(6,6))
+fig, ax = plt.subplots(figsize=(10,10))
 
 crime_type_counts = df['primary_type'].value_counts()
 crime_type_counts.plot(ax=ax, kind='bar', color='red')

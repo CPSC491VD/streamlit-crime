@@ -9,11 +9,16 @@ if 'conn' not in st.session_state:
 
 st.title("Location Frequency")
 st.divider()
-st.header("Top 10 most common locations where crimes are committed in Chicago, sorted by frequency.")
+st.markdown('<div style="text-align: center;"><h4>Top 10 most common locations where crimes are committed in Chicago</h4></div><br/>',
+    unsafe_allow_html=True
+)
 
 conn = st.session_state['conn']
 
 df = pd.DataFrame(conn.query("SELECT location_description FROM tbl_analytics;", ttl="10m"))
+
+df['location_description'] = df['location_description'].apply(lambda x: 'PARKING LOT' if x is not None and 'PARKING' in x else x)
+  
 
 fig, ax = plt.subplots(figsize=(10,10))
 
