@@ -17,14 +17,17 @@ df = pd.DataFrame(conn.query("SELECT location_description FROM tbl_analytics;", 
 
 fig, ax = plt.subplots(figsize=(10,10))
 
+order = df['location_description'].value_counts().iloc[:10].index
+
 sns.countplot(
     data=df, 
     y='location_description', 
-    order=df['location_description'].value_counts().iloc[:10].index,
-    palette="husl",
-    ax=ax
+    order=order,
+    ax=ax,
+    hue="location_description"
 )
 
+ax.legend().set_visible(False)
 ax.set_xlabel("Count", fontsize=15)
 ax.set_ylabel("Location Description", fontsize=15)
 
