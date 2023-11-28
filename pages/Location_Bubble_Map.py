@@ -1,5 +1,4 @@
 import streamlit as st
-import streamlit.components.v1 as components
 from utils import init_connection
 
 if 'conn' not in st.session_state:
