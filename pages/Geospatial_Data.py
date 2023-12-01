@@ -1,20 +1,21 @@
 import streamlit as st
 import pandas as pd
-from pydeck.data_utils import assign_random_colors
 import pydeck as pdk
 from utils import init_connection
+from utils import fetch_analytics_tbl
 
 if 'conn' not in st.session_state:
     st.session_state['conn'] = init_connection()
+
+if 'analytics_data' not in st.session_state:
+    conn = st.session_state['conn']
+    st.session_state['analytics_data'] = fetch_analytics_tbl(conn)
 
 st.title("Geospatial data of Chicago Crimes")
 st.divider()
 st.header("Geospatial visualization of Chicago Crimes")
 
-conn = st.session_state['conn']
-
-query = "SELECT DISTINCT latitude, longitude FROM tbl_analytics;"
-df = pd.DataFrame(conn.query(query)).dropna()
+df: pd.DataFrame = st.session_state['analytics_data']
 
 layer = pdk.Layer(
     "HexagonLayer",
