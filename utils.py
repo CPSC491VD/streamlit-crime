@@ -27,5 +27,6 @@ def get_latitude_longitude_mean(df: pd.DataFrame):
     return latitude_mean, longitude_mean
 
 @st.cache_data
-def fetch_analytics_tbl(conn):
-    return pd.DataFrame(conn.query("SELECT location_description FROM tbl_analytics;"))
+def fetch_analytics_tbl(_conn):
+    query = "SELECT * FROM tbl_analytics;"
+    return pd.DataFrame(_conn.query(query))
