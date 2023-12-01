@@ -9,18 +9,19 @@ if 'analytics_data' not in st.session_state:
     conn = st.session_state['conn']
     st.session_state['analytics_data'] = fetch_analytics_tbl(conn)
 
-st.title("Chicago Crime Data :rotating_light::bar_chart:")
+st.title("Chicago Crime Data Analysis :rotating_light::bar_chart:")
 st.sidebar.title("Chicago Crime Analysis")
-st.sidebar.markdown("Made by Daniel Cazarez and Vu Diep")
+st.sidebar.info("Please select a data visualization above.")
 st.divider()
+
+st.image('./media/chicago_skyline.jpg')
 st.header("Visualizing real-time data from the Chicago Crime Pipeline")
-st.subheader("Built for the CPSC 491 Capstone Project.")
+st.subheader("Built for the CPSC 491 Capstone")
 st.markdown(
     """
-    **This application is powered by data from the city of Chicago.\n**
+    **This application is powered by data from the city of Chicago.**\n
     - Data was ingested from this public API [City of Chicago Crime API](https://data.cityofchicago.org/Public-Safety/Crimes-2001-to-Present/ijzp-q8t2/data).\n
     - Data was loaded, transformed and exported to the postgreSQL database using [mage.ai](http://mage.ai/).\n
     - Database is hosted using [ElephantSQL](https://www.elephantsql.com/).
     """
 )
-st.sidebar.info("Please select a data visualization above.")
