@@ -4,11 +4,6 @@ from pydeck.data_utils import assign_random_colors
 import pydeck as pdk
 from utils import init_connection
 
-@st.cache_data
-def color_lookup(df: pd.DataFrame):
-    color_lookup = assign_random_colors(df['primary_type'])
-    return color_lookup
-
 if 'conn' not in st.session_state:
     st.session_state['conn'] = init_connection()
 
@@ -17,7 +12,9 @@ st.divider()
 st.header("Geospatial visualization of Chicago Crimes")
 
 conn = st.session_state['conn']
-df = pd.DataFrame(conn.query("SELECT DISTINCT latitude, longitude FROM tbl_analytics;")).dropna()
+
+query = "SELECT DISTINCT latitude, longitude FROM tbl_analytics;"
+df = pd.DataFrame(conn.query(query)).dropna()
 
 layer = pdk.Layer(
     "HexagonLayer",

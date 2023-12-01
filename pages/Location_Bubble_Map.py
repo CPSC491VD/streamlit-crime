@@ -1,8 +1,4 @@
 import streamlit as st
-from utils import init_connection
-
-if 'conn' not in st.session_state:
-    st.session_state['conn'] = init_connection()
 
 st.title("Chicago Crime Data Bubble Map :bar_chart:")
 st.subheader("Each recent crime committed in the city of Chicago, plotted and color-coded")

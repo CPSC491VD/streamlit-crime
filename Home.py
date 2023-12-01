@@ -1,8 +1,13 @@
 import streamlit as st
 from utils import init_connection
+from utils import fetch_analytics_tbl
 
 if 'conn' not in st.session_state:
     st.session_state['conn'] = init_connection()
+
+if 'analytics_data' not in st.session_state:
+    conn = st.session_state['conn']
+    st.session_state['analytics_data'] = fetch_analytics_tbl(conn)
 
 st.title("Chicago Crime Data :rotating_light::bar_chart:")
 st.divider()
