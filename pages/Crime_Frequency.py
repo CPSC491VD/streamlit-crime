@@ -13,6 +13,7 @@ if 'analytics_data' not in st.session_state:
     st.session_state['analytics_data'] = fetch_analytics_tbl(conn)
 
 st.title("Crime Frequency")
+st.title("Test")
 st.divider()
 
 df = st.session_state['analytics_data']
