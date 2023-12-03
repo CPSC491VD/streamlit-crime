@@ -22,6 +22,10 @@ df = df.head(25)
 
 add_location_link(df)
 
+st.markdown("""
+<p>
+The data table below presents the latest crime updates in our database, reflecting the most recent incidents recorded in the jurisdiction. Each row details specific information about individual crimes, including the type of offense, date, time, and location. This comprehensive dataset serves as a valuable resource for analyzing crime trends, informing law enforcement strategies, and fostering community awareness to enhance overall public safety.</p></br>
+""", unsafe_allow_html=True)
 st.dataframe(
     df,
     column_config={
