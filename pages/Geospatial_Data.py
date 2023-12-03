@@ -13,7 +13,7 @@ if 'analytics_data' not in st.session_state:
 
 st.title("Geospatial data of Chicago Crimes")
 st.divider()
-st.header("Geospatial visualization of Chicago Crimes")
+st.markdown("<p>The Crime Location Bubble Map visually encapsulates the spatial distribution of crimes across Chicago, providing an insightful representation of the city's safety landscape. Each bubble on the map signifies a specific crime location, with variations in size corresponding to the frequency or severity of incidents. This dynamic visualization not only highlights high-crime areas but also enables a nuanced understanding of crime hotspots and trends. By integrating geographical information, law enforcement and policymakers can strategically allocate resources and implement targeted interventions to enhance public safety in specific neighborhoods.</p>", unsafe_allow_html=True)
 
 df: pd.DataFrame = st.session_state['analytics_data']
 
@@ -46,3 +46,6 @@ deck = pdk.Deck(
 
 st.pydeck_chart(deck)
 st.caption("Aggregated crime data based on latitude, longitude coordinates. Higher hexagons in red/orange indicate higher crime rates at that location.")
+
+st.markdown("""<iframe width="100%" height="600px" src="https://lookerstudio.google.com/embed/reporting/1b08c3ee-c01d-4535-939c-67afc990f1a9/page/051hD/?embed=true" frameborder="0" style="border:0" allowfullscreen></iframe>
+""",unsafe_allow_html= True)
