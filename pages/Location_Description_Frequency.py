@@ -12,7 +12,7 @@ if 'analytics_data' not in st.session_state:
     conn = st.session_state['conn']
     st.session_state['analytics_data'] = fetch_analytics_tbl(conn)
 
-df = st.session_state['analytics_data']
+df: pd.DataFrame = st.session_state['analytics_data']
 df = df.replace({"PARKING LOT / GARAGE (NON RESIDENTIAL)": "PARKING LOT"})
 
 st.title("Location Frequency")
