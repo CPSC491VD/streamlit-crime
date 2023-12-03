@@ -39,3 +39,5 @@ fig_2 = px.scatter(
 
 st.plotly_chart(fig_1)
 st.plotly_chart(fig_2)
+
+st.write('test')
