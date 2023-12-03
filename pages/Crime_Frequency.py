@@ -31,7 +31,7 @@ sns.countplot(
 )
 
 ax.set_xlabel("Count", fontsize=15)
-ax.set_ylabel("Crime committed", fontsize=15)
+ax.set_ylabel("Crime Committed", fontsize=15)
 
 ax.set_xticklabels(ax.get_xticklabels(), rotation=45, ha='right')
 
