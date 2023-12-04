@@ -11,3 +11,5 @@ st.markdown(
     markdown,
     unsafe_allow_html=True
 )
+
+st.caption("Aggregated data of crimes, color coded and labeled via Looker Studio.")
