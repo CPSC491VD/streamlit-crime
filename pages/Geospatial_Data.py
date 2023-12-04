@@ -1,6 +1,8 @@
 import streamlit as st
 import pandas as pd
 import pydeck as pdk
+import plotly.express as px
+from utils import get_latitude_longitude_mean
 from utils import init_connection
 from utils import fetch_analytics_tbl
 
@@ -11,39 +13,62 @@ if 'analytics_data' not in st.session_state:
     conn = st.session_state['conn']
     st.session_state['analytics_data'] = fetch_analytics_tbl(conn)
 
-st.title("Geospatial data of Chicago Crimes")
-st.divider()
+st.title("Geospatial Chicago Crimes :world_map:")
 st.header("A geospatial representation of Chicago crimes.")
-st.markdown("<p>The Crime Location Bubble Map visually encapsulates the spatial distribution of crimes across Chicago, providing an insightful representation of the city's safety landscape. Each bubble on the map signifies a specific crime location, with variations in size corresponding to the frequency or severity of incidents. This dynamic visualization not only highlights high-crime areas but also enables a nuanced understanding of crime hotspots and trends. By integrating geographical information, law enforcement and policymakers can strategically allocate resources and implement targeted interventions to enhance public safety in specific neighborhoods.</p>", unsafe_allow_html=True)
+tab1, tab2 = st.tabs(["Hexagonal geospatial map", "Heatmap"])
 
 df: pd.DataFrame = st.session_state['analytics_data']
+lat_mean, lon_mean = get_latitude_longitude_mean(df=df)
 
-layer = pdk.Layer(
-    "HexagonLayer",
-    data=df,
-    elevation_scale=50,
-    get_position='[longitude,latitude]',
-    auto_highlight=True,
-    extruded=True,
-    pickable=True
-)
+with tab1:
+    layer_hex = pdk.Layer(
+        "HexagonLayer",
+        data=df,
+        elevation_scale=50,
+        get_position='[longitude,latitude]',
+        auto_highlight=True,
+        extruded=True,
+        pickable=True
+    )
 
-view_state = pdk.ViewState(
-    latitude=df['latitude'].mean(),
-    longitude=df['longitude'].mean(),
-    zoom=8,
-    pitch=45,
-    bearing=10
-)
+    view_state = pdk.ViewState(
+        latitude=lat_mean,
+        longitude=lon_mean,
+        zoom=8,
+        pitch=45,
+        bearing=10
+    )
 
-deck = pdk.Deck(
-    map_style="mapbox://styles/mapbox/dark-v11",
-    layers=[layer],
-    initial_view_state=view_state,
-    tooltip={
-        "text": "Elevation Value: {elevationValue}"
-    }
-)
+    deck = pdk.Deck(
+        map_style="mapbox://styles/mapbox/dark-v11",
+        layers=[layer_hex],
+        initial_view_state=view_state,
+        tooltip={
+            "text": "Elevation Value: {elevationValue}"
+        }
+    )
+    st.pydeck_chart(deck)
+    st.caption("Aggregated crime data based on latitude, longitude coordinates. Higher hexagons in red/orange indicate higher crime rates at that location.")
+    markdown = "The crime hexagon map shows the distribution of crimes in Chicago. From this, we can see the peak in red symbolizes the area where the most crimes have occurred. This allows us to better explore the data and understand crime trends in a large city."
+    st.markdown(markdown)
 
-st.pydeck_chart(deck)
-st.caption("Aggregated crime data based on latitude, longitude coordinates. Higher hexagons in red/orange indicate higher crime rates at that location.")
+with tab2:
+    fig = px.density_mapbox(
+        df,
+        lat='latitude',
+        lon='longitude',
+        hover_name='primary_type',
+        center={
+            'lat': lat_mean,
+            'lon': lon_mean
+        },
+        radius=8,
+        mapbox_style='open-street-map',
+        width=800,
+        height=600
+    )
+    
+    st.plotly_chart(fig)
+    st.caption("Heatmap that aggregates crimes committed by points in the dataframe.")
+    markdown = "The crime heatmap allows us to zoom in and see how data points aggregate in the city of Chicago. It produces a representation of crime density within the city"
+    st.markdown(markdown)
