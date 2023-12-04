@@ -12,7 +12,7 @@ if 'analytics_data' not in st.session_state:
     conn = st.session_state['conn']
     st.session_state['analytics_data'] = fetch_analytics_tbl(conn)
 
-st.title("Crime Trend Data")
+st.title("Crime Trends :chart_with_upwards_trend:")
 st.divider()
 st.header("Visualized crime trends over time in the city of Chicago, over the course of some days.")
 

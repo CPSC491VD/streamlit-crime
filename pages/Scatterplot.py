@@ -14,6 +14,11 @@ if 'analytics_data' not in st.session_state:
 df: pd.DataFrame = st.session_state['analytics_data']
 df['crime_hour'] = df['crime_date'].dt.hour
 
+st.title("Scatterplots")
+st.divider()
+st.header("Scatterplots produced from crime data.")
+
+
 hourly_crime_counts = df.groupby('crime_hour').size().reset_index(name='crime_count')
 hourly_crime_df = pd.DataFrame(hourly_crime_counts)
 hourly_crime_df = hourly_crime_df.reindex(range(24), fill_value=0)

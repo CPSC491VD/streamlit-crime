@@ -13,7 +13,7 @@ if 'analytics_data' not in st.session_state:
     conn = st.session_state['conn']
     st.session_state['analytics_data'] = fetch_analytics_tbl(conn)
 
-st.title("Geospatial data of Chicago Crimes")
+st.title("Geospatial Chicago Crimes :world_map:")
 st.divider()
 st.header("A geospatial representation of Chicago crimes.")
 markdown = "The crime hexagon map shows the distribution of crimes in Chicago. From this, we can see the peak in red symbolizes the area where the most crimes have occurred. This allows us to better explore the data and understand crime trends in a large city."
@@ -58,7 +58,8 @@ fig = px.density_mapbox(
     lon='longitude',
     hover_name='primary_type',
     center={
-        'lat':lat_mean, 'lon':lon_mean
+        'lat': lat_mean,
+        'lon': lon_mean
     },
     radius=10,
     mapbox_style='open-street-map'

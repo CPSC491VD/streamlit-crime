@@ -11,12 +11,12 @@ if 'analytics_data' not in st.session_state:
     conn = st.session_state['conn']
     st.session_state['analytics_data'] = fetch_analytics_tbl(conn)
 
-st.title("Recent Crime Entries")
+st.title("Recent Crime Entries :date:")
 st.divider()
 st.header("Condensed crime data from the past 25 most recent crimes committed in Chicago")
 
 df: pd.DataFrame = st.session_state['analytics_data']
-df = df[['id', 'crime_date', 'crime_description', 'latitude', 'longitude']]
+df = df[['id', 'crime_date', 'primary_type', 'crime_description', 'latitude', 'longitude']]
 df['crime_date'] = pd.to_datetime(df['crime_date'])
 df = df.head(25)
 
