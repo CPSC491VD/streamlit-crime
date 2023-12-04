@@ -46,6 +46,3 @@ deck = pdk.Deck(
 
 st.pydeck_chart(deck)
 st.caption("Aggregated crime data based on latitude, longitude coordinates. Higher hexagons in red/orange indicate higher crime rates at that location.")
-
-st.markdown("""<iframe width="100%" height="600px" src="https://lookerstudio.google.com/embed/reporting/1b08c3ee-c01d-4535-939c-67afc990f1a9/page/051hD/?embed=true" frameborder="0" style="border:0" allowfullscreen></iframe>
-""",unsafe_allow_html= True)
