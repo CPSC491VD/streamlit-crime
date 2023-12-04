@@ -13,6 +13,7 @@ if 'analytics_data' not in st.session_state:
 
 st.title("Geospatial data of Chicago Crimes")
 st.divider()
+st.header("A geospatial representation of Chicago crimes.")
 st.markdown("<p>The Crime Location Bubble Map visually encapsulates the spatial distribution of crimes across Chicago, providing an insightful representation of the city's safety landscape. Each bubble on the map signifies a specific crime location, with variations in size corresponding to the frequency or severity of incidents. This dynamic visualization not only highlights high-crime areas but also enables a nuanced understanding of crime hotspots and trends. By integrating geographical information, law enforcement and policymakers can strategically allocate resources and implement targeted interventions to enhance public safety in specific neighborhoods.</p>", unsafe_allow_html=True)
 
 df: pd.DataFrame = st.session_state['analytics_data']
