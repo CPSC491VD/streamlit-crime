@@ -13,8 +13,8 @@ if 'analytics_data' not in st.session_state:
     st.session_state['analytics_data'] = fetch_analytics_tbl(conn)
 
 st.title("Crime Trends :chart_with_upwards_trend:")
-st.divider()
 st.header("Visualized crime trends over time in the city of Chicago, over the course of some days.")
+st.divider()
 
 df: pd.DataFrame = st.session_state['analytics_data']
 cutoff_date = df['crime_date'].max()

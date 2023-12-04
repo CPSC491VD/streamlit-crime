@@ -15,8 +15,9 @@ if 'analytics_data' not in st.session_state:
 df: pd.DataFrame = st.session_state['analytics_data']
 
 st.title("Chicago Crime Data Bubble Map :bubble_tea:")
-st.divider()
 st.subheader("Each recent crime committed in the city of Chicago, plotted and color-coded")
+st.divider()
+st.write("This is an interactive map which allows users to hover over each point and view the legend to determine the crime committed at the datapoint.")
 
 lat_mean, lon_mean = get_latitude_longitude_mean(df=df)
 fig = px.scatter_mapbox(

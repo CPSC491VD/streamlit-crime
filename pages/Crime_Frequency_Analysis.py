@@ -15,10 +15,9 @@ if 'analytics_data' not in st.session_state:
 df: pd.DataFrame = st.session_state['analytics_data']
 df = df.replace({"PARKING LOT / GARAGE (NON RESIDENTIAL)": "PARKING LOT"})
 
-st.title("Crime Frequency Data")
-st.divider()
-
-tab1, tab2, tab3, tab4 = st.tabs(["Location Frequency", "Crime Type Frequency", "Arrests", "Description Frequency"])
+st.title("Crime Frequency Data :police_car:")
+st.header("Exploratory analysis of crime data")
+tab1, tab2, tab3, tab4 = st.tabs(["Location frequency", "Crime type frequency", "Arrests", "Description frequency"])
 
 with tab1:
     fig, ax = plt.subplots(figsize=(6,4))
